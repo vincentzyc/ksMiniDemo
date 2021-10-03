@@ -1,0 +1,12 @@
+<!-- index.ksml -->
+<view class="container">
+    <banner class="skeleton"/>
+    <view class="skeleton">
+        <view class="sk-base sk-banner"></view>
+        <view class="sk-base sk-row"></view>
+        <view class="sk-base sk-row"></view>
+        <view class="sk-base sk-row"></view>
+        <view class="sk-base sk-row"></view>
+        <view class="sk-base sk-row"></view>
+    </view>
+</view>
