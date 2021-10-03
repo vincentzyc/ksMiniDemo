@@ -1,6 +1,9 @@
 <!-- index.ksml -->
 <view class="container">
-    <banner class="skeleton"/>
+    <view class="center">
+        <image class="image" src="../../assets/images/banner.jpg" />
+    </view>
+    <banner class="skeleton" />
     <view class="skeleton">
         <view class="sk-base sk-banner"></view>
         <view class="sk-base sk-row"></view>
