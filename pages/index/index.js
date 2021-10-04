@@ -1,6 +1,7 @@
 //index.js
 Page({
     data: {
+        hadInit: true,
         url: 'https://h5.liulianglf.cn/h5/index.html?id=2021081816082400197&pid=16800',
     },
     onLoad: function () {
@@ -13,5 +14,8 @@ Page({
             if (callback) nurl = nurl.includes('?') ? nurl + '&callback=' + callback : nurl + '?callback=' + callback
             this.setData({ url: nurl });
         }
+        setTimeout(() => {
+            this.data.hadInit = false
+        }, 1000)
     }
 })
