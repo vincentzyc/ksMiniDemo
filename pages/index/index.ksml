@@ -8,10 +8,8 @@
         <view class="sk-base sk-row"></view>
         <view class="sk-base sk-row"></view>
     </view>
-    <view ks:else="{{pad}}">
-        <view class="center">
-            <image class="image" src="../../assets/images/banner.jpg" />
-        </view>
+    <view class="skeleton center" ks:else>
+        <image class="image" src="../../assets/images/banner.jpg" />
         <banner class="skeleton" />
     </view>
 </view>
