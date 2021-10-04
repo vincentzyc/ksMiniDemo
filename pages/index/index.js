@@ -15,7 +15,8 @@ Page({
             this.setData({ url: nurl });
         }
         setTimeout(() => {
-            this.data.hadInit = false
+            console.log(111)
+            this.setData({ hadInit: false });
         }, 1000)
     }
 })
