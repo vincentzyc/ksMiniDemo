@@ -1,11 +1,4 @@
 Component({
-    onShareAppMessage() {
-        return {
-            title: 'swiper',
-            path: 'pages/component/swiper/index'
-        }
-    },
-
     data: {
         background: [{
             color: 'orangered',

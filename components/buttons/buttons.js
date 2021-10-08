@@ -9,42 +9,44 @@ const pageObject = {
         loading: false
     },
 
-    setDisabled() {
-        this.setData({
-            disabled: !this.data.disabled
-        })
-    },
+    methods: {
+        setDisabled() {
+            this.setData({
+                disabled: !this.data.disabled
+            })
+        },
 
-    setPlain() {
-        this.setData({
-            plain: !this.data.plain
-        })
-    },
+        setPlain() {
+            this.setData({
+                plain: !this.data.plain
+            })
+        },
 
-    setLoading() {
-        this.setData({
-            loading: !this.data.loading
-        })
-    },
+        setLoading() {
+            this.setData({
+                loading: !this.data.loading
+            })
+        },
 
-    handleContact(e) {
-        console.log(e.detail)
-    },
+        handleContact(e) {
+            console.log(e.detail)
+        },
 
-    handleGetPhoneNumber(e) {
-        console.log(e.detail)
-    },
+        handleGetPhoneNumber(e) {
+            console.log(e.detail)
+        },
 
-    handleGetUserInfo(e) {
-        console.log(e.detail)
-    },
+        handleGetUserInfo(e) {
+            console.log(e.detail)
+        },
 
-    handleOpenSetting(e) {
-        console.log(e.detail.authSetting)
-    },
+        handleOpenSetting(e) {
+            console.log(e.detail.authSetting)
+        },
 
-    handleGetUserInfo(e) {
-        console.log(e.detail.userInfo)
+        handleGetUserInfo(e) {
+            console.log(e.detail.userInfo)
+        }
     }
 }
 
@@ -60,4 +62,4 @@ for (let i = 0; i < types.length; ++i) {
     }(types[i]))
 }
 
-Page(pageObject)
+Component(pageObject)

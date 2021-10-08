@@ -34,5 +34,28 @@
                 按钮
             </button>
         </view>
+        <button open-type="contact" bindcontact="onContact">
+            打开客服会话
+        </button>
+        <button open-type="share">转发</button>
+        <button
+            open-type="getPhoneNumber"
+            bindgetphonenumber="onGetPhoneNumber"
+        >
+            获取用户手机号
+        </button>
+        <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">
+            获取用户信息
+        </button>
+        <button open-type="launchApp" bindlaunchapp="onLaunchApp">
+            打开APP
+        </button>
+        <button open-type="openSetting" bindopensetting="onOpenSetting">
+            打开授权设置页
+        </button>
+        <button open-type="feedback">打开“意见反馈”页面</button>
+        <button open-type="favorite">收藏</button>
+        <button open-type="watchLater">稍后再看</button>
+        <button open-type="openProfile" user="1833712571">打开用户主页</button>
     </view>
 </view>
