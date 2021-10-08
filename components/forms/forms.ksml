@@ -1,0 +1,39 @@
+<view class='total'>
+  <form bindsubmit='submit' bindreset='reset'>
+    <view class='wrap'>
+      <view>滑块选择器</view>
+      <slider value='80' name='slider' show-value />
+    </view>
+    <view class='wrap'>
+      <view>输入框</view>
+      <input name='input' class='input' placeholder="请输入内容"/>
+    </view>
+    <view class='wrap'>
+      <view>开关</view>
+      <switch name='switch' />
+    </view>
+    <view class='wrap'>
+      <view>单选按钮</view>
+      <radio-group name='radio-group'>
+        <label>
+          <radio value='radio1' checked />
+          单选一
+        </label>
+        <label>
+          <radio value='radio2' />
+          单选二
+        </label>
+      </radio-group>
+    </view>
+    <view class='wrap'>
+      <view>您的爱好是</view>
+      <checkbox-group class='hobby-content' name='hobby'>
+        <label class='block border-bottom con-top' ks:for='{{hobby}}' ks:key='{{index}}'>
+          <checkbox value='{{item.value}}' checked='{{item.checked}}'>{{item.name}}</checkbox>
+        </label>
+      </checkbox-group>
+      <button class='pub-btn stroke-btn' form-type='reset'>Reset</button>
+      <button class='pub-btn fill-btn' form-type='submit'>Submit</button>
+    </view>
+  </form>
+</view>
