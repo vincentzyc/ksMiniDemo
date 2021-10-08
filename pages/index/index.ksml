@@ -11,6 +11,7 @@
     <view class="skeleton center" ks:if="{{!hadInit}}">
         <image class="image" src="../../assets/images/banner.jpg" />
         <YuiBanner class="skeleton" />
-        <YuiButtons class="skeleton"/>
+        <YuiButtons class="skeleton" />
+        <YuiForms class="skeleton" />
     </view>
 </view>
