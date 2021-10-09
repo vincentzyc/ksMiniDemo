@@ -4,8 +4,9 @@ Page({
         // url: 'https://h5.liulianglf.cn/h5/index.html?id=2021081816082400197&pid=16800',
     },
     goOrder() {
+        const url = 'https://card.liulianglf.cn/sim/index.html#/login'
         ks.navigateTo({
-            url: '/pages/iframe/iframe?url=' + encodeURIComponent('https://card.liulianglf.cn/sim/index.html#/login'),
+            url: '/pages/iframe/iframe?url=' + encodeURIComponent(url),
         })
     },
     openService() {
