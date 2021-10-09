@@ -1,11 +1,12 @@
 {
-  "pages": [
-    "pages/index/index"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "中国电信尊享版星卡",
-    "navigationBarTextStyle": "black"
-  }
+    "pages": [
+        "pages/index/index",
+        "pages/iframe/iframe"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "中国电信尊享版星卡",
+        "navigationBarTextStyle": "black"
+    }
 }
