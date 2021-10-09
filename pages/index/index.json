@@ -1,7 +1,6 @@
 {
     "usingComponents": {
         "YuiBanner": "/components/banner/banner",
-        "YuiButtons": "/components/buttons/buttons",
-        "YuiForms": "/components/forms/forms"
+        "YunPopup": "/components/popup/popup"
     }
 }

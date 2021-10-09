@@ -1,17 +1,35 @@
 <!-- index.ksml -->
-<view class="container">
-    <view class="skeleton" ks:if="{{hadInit}}">
+<view class="page-wrapper">
+    <!-- <view class="skeleton" ks:if="{{hadInit}}">
         <view class="sk-base sk-banner"></view>
         <view class="sk-base sk-row"></view>
         <view class="sk-base sk-row"></view>
         <view class="sk-base sk-row"></view>
         <view class="sk-base sk-row"></view>
         <view class="sk-base sk-row"></view>
-    </view>
-    <view class="skeleton center" ks:if="{{!hadInit}}">
-        <image class="image" src="../../assets/images/banner.jpg" />
-        <YuiBanner class="skeleton" />
-        <YuiButtons class="skeleton" />
-        <YuiForms class="skeleton" />
+    </view> -->
+    <YunPopup id="yun-popup"><view>这是父组件传过来的节点哦~~~</view></YunPopup>
+    <view class="container">
+        <view class="fixex-service-wrap">
+            <view class="fixex-service" bindtap="goOrder">订单查询</view>
+            <view class="fixex-service" bindtap="openService">联系客服</view>
+        </view>
+        <image class="image" src="../../assets/images/1.jpg" />
+        <!-- <YuiForms class="row" /> -->
+        <image class="image" lazy-load src="../../assets/images/2.jpg" />
+        <image class="image" lazy-load src="../../assets/images/3.jpg" />
+        <view class="company-info">
+            <view class="txt">
+                广州骏伯网络科技有限公司，主营办理移动联通电信合约套餐，宽带，流量包等。
+            </view>
+            <view class="txt">
+                公司地址：广州市天河区博汇街6号5栋302、303、305房
+            </view>
+            <view class="txt">联系电话：020-38468075</view>
+        </view>
+        <button class="fixed-bottom submit-btn" type="primary">免费领取</button>
+        <!-- <YuiBanner class="row" /> -->
+        <!-- <YuiButtons class="row" /> -->
+        <!-- <YuiForms class="row" /> -->
     </view>
 </view>
