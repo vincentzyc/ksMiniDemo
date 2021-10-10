@@ -10,8 +10,11 @@ Page({
         })
     },
     openService() {
-        const elYunPopup = this.selectComponent('#yun-popup')
-        elYunPopup.data.show ? this.selectComponent('#yun-popup').closePopup() : this.selectComponent('#yun-popup').openPopup()
+        ks.showModal({
+            title: "客服电话",
+            content: "020-38468075",
+            showCancel: false
+        })
     },
     onLoad: function () {
         // const options = ks.getLaunchOptionsSync();

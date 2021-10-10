@@ -23,7 +23,7 @@
     height: 100rpx;
     margin-bottom: 30rpx;
 } */
-.container {
+.bg000 {
     background-color: #000000;
 }
 
@@ -31,17 +31,18 @@
     position: fixed;
     top: 20rpx;
     left: 0;
+    z-index: 9;
 }
 .fixex-service-wrap .fixex-service {
     padding: 10rpx 20rpx;
-    background-image: linear-gradient(to bottom, #ffe694, #f2cc65);
-    background-image: -webkit-linear-gradient(to bottom, #ffe694, #f2cc65);
+    background-image: linear-gradient(to bottom, #ffefca, #f2cc65);
     border-top-right-radius: 40rpx;
     border-bottom-right-radius: 40rpx;
     font-size: 30rpx;
     color: #4f2f0a;
     font-weight: bold;
     margin-bottom: 20rpx;
+    z-index: 1;
 }
 
 .fixed-bottom {
@@ -52,13 +53,13 @@
 }
 
 .submit-btn {
-    background-image: linear-gradient(to bottom right, #ffe694, #f2cc65);
-    background-image: -webkit-linear-gradient(to bottom right, #ffe694, #f2cc65);
+    background-image: linear-gradient(to bottom right, #ffefca, #f2cc65);
     color: #5a3e0e !important;
     font-weight: bold;
+    line-height: 2.2;
     letter-spacing: 5rpx;
-    border-radius: 40rpx;
-    font-size: 36rpx;
+    border-radius: 55rpx;
+    font-size: 50rpx;
 }
 
 .company-info {
