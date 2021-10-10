@@ -20,3 +20,5 @@ Component({
         }
     }
 })
+    // const elYunPopup = this.selectComponent('#yun-popup')
+    // elYunPopup.data.show ? this.selectComponent('#yun-popup').closePopup() : this.selectComponent('#yun-popup').openPopup()
