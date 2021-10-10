@@ -19,6 +19,14 @@ Component({
                 title: `您提交的数据是${JSON.stringify(e.detail.value)}`,
                 icon: 'none'
             })
+        },
+        openAgr1() {
+            const elYunPopup = this.selectComponent('#yun-popup1')
+            console.log(elYunPopup)
+            elYunPopup.data.show ? this.selectComponent('#yun-popup1').closePopup() : this.selectComponent('#yun-popup1').openPopup()
+        },
+        openAgr2(){
+
         }
     }
 })
