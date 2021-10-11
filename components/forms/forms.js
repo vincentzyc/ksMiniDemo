@@ -1,4 +1,10 @@
 Component({
+    properties: {
+        cjData: {
+            optionalTypes: ['Object', 'Null'],
+            value: null
+        }
+    },
     data: {
         hobby: [
             { value: 'sing', name: '唱歌' },
@@ -14,6 +20,7 @@ Component({
             console.log('reset', e)
         },
         submit(e) {
+            console.log(this.data.cjData)
             console.log('submit', e)
             ks.showToast({
                 title: `您提交的数据是${JSON.stringify(e.detail.value)}`,
@@ -23,10 +30,12 @@ Component({
         openAgr1() {
             const elYunPopup = this.selectComponent('#yun-popup1')
             console.log(elYunPopup)
-            elYunPopup.data.show ? this.selectComponent('#yun-popup1').closePopup() : this.selectComponent('#yun-popup1').openPopup()
+            elYunPopup.data.show ? elYunPopup.closePopup() : elYunPopup.openPopup()
         },
-        openAgr2(){
-
+        openAgr2() {
+            const elYunPopup = this.selectComponent('#yun-popup2')
+            console.log(elYunPopup)
+            elYunPopup.data.show ? elYunPopup.closePopup() : elYunPopup.openPopup()
         }
     }
 })
