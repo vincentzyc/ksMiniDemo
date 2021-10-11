@@ -1,5 +1,7 @@
 Page({
     data: {
+        pid: "18495",
+        cjData: null
         // hadInit: true,
         // url: 'https://h5.liulianglf.cn/h5/index.html?id=2021081816082400197&pid=16800',
     },
@@ -17,6 +19,20 @@ Page({
         })
     },
     onLoad: function () {
+        const _this = this
+        ks.request({
+            url: 'https://card-api.liulianglf.cn/service/jimPenn/page_id',
+            method: 'POST',
+            data: {
+                pid: '18495'
+            },
+            header: {
+                'content-type': 'application/json' // 默认值
+            },
+            success(res) {
+                if (res.data?.data) _this.setData({ cjData: res.data.data });
+            }
+        })
         // const options = ks.getLaunchOptionsSync();
         // if (options.query) {
         //     const h5page = options.query.h5page || ''
