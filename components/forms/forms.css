@@ -28,8 +28,10 @@
 .input-label::after {
     content: "*";
     color: #e10012;
-    font-weight: 700;
-    font-size: 32rpx;
+    font-size: 24rpx;
+}
+.input-placeholder{
+    color: #aaa;
 }
 
 .form-submit {
