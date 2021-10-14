@@ -30,8 +30,8 @@ Component({
     getMultiText(multiIndex) {
       if (Array.isArray(this.data.multiArr) && this.data.multiArr.length === 0) return []
       const province = this.data.multiArr[0][multiIndex[0]]
-      const city = multiIndex[1] ? this.data.multiArr[1][multiIndex[1]] : ''
-      const area = multiIndex[2] ? this.data.multiArr[2][multiIndex[2]] : ''
+      const city = multiIndex[1] == 0 || multiIndex[1] ? this.data.multiArr[1][multiIndex[1]] : ''
+      const area = multiIndex[1] == 0 || multiIndex[2] ? this.data.multiArr[2][multiIndex[2]] : ''
       let multiText = []
       if (province) multiText.push(province)
       if (city) multiText.push(city)
@@ -73,6 +73,7 @@ Component({
           const element3 = cityObj.cityInfo[index3];
           areas.push(element3.cityName)
           if (element3.cityName === area) {
+            console.log('indexindexindex', index3);
             areaIndex = index3
           }
         }
