@@ -106,32 +106,34 @@ Component({
           break;
       }
     },
+    formatParam(params) {
+      if (Array.isArray(params.selectCity) && params.selectCity.length > 0) {
+        const arrCity = this.getMultiText(params.selectCity)
+        params.province = arrCity[0] || "";
+        params.city = arrCity[1] || "";
+        params.district = arrCity[2] || "";
+      }
+      params.pageId = this.data.cjData.pageId
+      params.pid = parseFloat(this.data.cjData.pid)
+      return params
+    },
     submit(e) {
       console.log(this.data.cjData)
-      console.log('submit', e)
+      const params = this.formatParam(e.detail.value)
+      console.log('submit', params)
       ks.showToast({
-        title: `您提交的数据是${JSON.stringify(e.detail.value)}`,
+        title: `您提交的数据是${JSON.stringify(params)}`,
         icon: 'none'
       })
     },
     openAgr1() {
       const elYunPopup = this.selectComponent('#yun-popup1')
-      console.log(elYunPopup)
       elYunPopup.data.show ? elYunPopup.closePopup() : elYunPopup.openPopup()
     },
     openAgr2() {
       const elYunPopup = this.selectComponent('#yun-popup2')
-      console.log(elYunPopup)
       elYunPopup.data.show ? elYunPopup.closePopup() : elYunPopup.openPopup()
-    },
-    pickerRegion(e) {
-      console.log('init region', this.data.region)
-      console.log('region', e.detail.value)
-      const arrRegion = e.detail.value || []
-      const strRegion = arrRegion.join(' ')
-      this.setData({ region: arrRegion })
-      this.setData({ regions: strRegion })
-    },
+    }
   },
   async ready() {
     const res = await Api.Choujin.getIpRegion({})
