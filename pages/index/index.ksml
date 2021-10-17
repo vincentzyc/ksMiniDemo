@@ -15,7 +15,7 @@
             <view class="fixex-service" bindtap="openService">联系客服</view>
         </view>
         <image class="image" src="../../assets/images/1.jpg" />
-        <YuiForms class="row" cjData="{{cjData}}"/>
+        <YuiForms class="row" cjData="{{cjData}}" id="YuiForms"/>
         <image class="image" lazy-load src="../../assets/images/2.jpg" />
         <image class="image" lazy-load src="../../assets/images/3.jpg" />
         <view class="company-info">
@@ -27,6 +27,6 @@
             </view>
             <view class="txt">联系电话：020-38468075</view>
         </view>
-        <button class="fixed-bottom submit-btn" type="primary">免费领取</button>
+        <button class="fixed-bottom submit-btn" type="primary"  bindtap="bottomSubmit">免费领取</button>
     </view>
 </view>
