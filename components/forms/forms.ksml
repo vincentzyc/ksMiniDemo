@@ -33,7 +33,9 @@
 			</button>
 		</view>
 		<view class="agr-wrap flex flex-center">
-			<checkbox value="checkbox1" checked color="#fff" />
+			<checkbox-group name='checkbox'>
+				<checkbox value="checkbox1" checked color="#fff" />
+			</checkbox-group>
 			<view>
 				<span>提交即视为阅读并同意</span>
 				<span class="agr-title" bindtap="openAgr1">

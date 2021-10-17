@@ -1,4 +1,4 @@
-// import CITYS from '../../assets/json/city.json';
+import ruleList from '../../assets/js/validate.js';
 import Api from '../../api/index'
 
 Component({
@@ -31,7 +31,7 @@ Component({
       if (Array.isArray(this.data.multiArr) && this.data.multiArr.length === 0) return []
       const province = this.data.multiArr[0][multiIndex[0]]
       const city = multiIndex[1] == 0 || multiIndex[1] ? this.data.multiArr[1][multiIndex[1]] : ''
-      const area = multiIndex[1] == 0 || multiIndex[2] ? this.data.multiArr[2][multiIndex[2]] : ''
+      const area = multiIndex[2] == 0 || multiIndex[2] ? this.data.multiArr[2][multiIndex[2]] : ''
       let multiText = []
       if (province) multiText.push(province)
       if (city) multiText.push(city)
@@ -106,6 +106,18 @@ Component({
           break;
       }
     },
+    valiDate(obj) {
+      for (const key in obj) {
+        if (Object.hasOwnProperty.call(obj, key)) {
+          const element = obj[key];
+          if (ruleList[key]) {
+            const valiRes = ruleList[key](element)
+            if (valiRes !== true) return valiRes
+          }
+        }
+      }
+      return true
+    },
     formatParam(params) {
       if (Array.isArray(params.selectCity) && params.selectCity.length > 0) {
         const arrCity = this.getMultiText(params.selectCity)
@@ -114,17 +126,17 @@ Component({
         params.district = arrCity[2] || "";
       }
       params.pageId = this.data.cjData.pageId
-      params.pid = parseFloat(this.data.cjData.pid)
+      params.pid = this.data.cjData.pid
       return params
     },
     submit(e) {
-      console.log(this.data.cjData)
+      console.log(e);
+      console.log('酬金基础数据',this.data.cjData)
       const params = this.formatParam(e.detail.value)
-      console.log('submit', params)
-      ks.showToast({
-        title: `您提交的数据是${JSON.stringify(params)}`,
-        icon: 'none'
-      })
+      console.log('提交数据', params)
+      const valiDateRes = this.valiDate(params);
+      if (valiDateRes !== true) return ks.showToast({ title: valiDateRes, icon: 'none' })
+      ks.showToast({ title: '数据格式校验通过', icon: 'none' })
     },
     openAgr1() {
       const elYunPopup = this.selectComponent('#yun-popup1')
