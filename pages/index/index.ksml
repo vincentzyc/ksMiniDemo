@@ -27,6 +27,5 @@
             </view>
             <view class="txt">联系电话：020-38468075</view>
         </view>
-        <button class="fixed-bottom submit-btn" type="primary"  bindtap="bottomSubmit">免费领取</button>
     </view>
 </view>
