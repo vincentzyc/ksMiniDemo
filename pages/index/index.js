@@ -1,3 +1,4 @@
+import Api from '../../api/index'
 Page({
   data: {
     pid: "18495",
@@ -18,24 +19,19 @@ Page({
       showCancel: false
     })
   },
-  onLoad: function () {
-    const _this = this
-    ks.request({
-      url: 'https://card-api.liulianglf.cn/service/jimPenn/page_id',
-      method: 'POST',
-      data: {
-        pid: '18495'
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        if (res.data?.data) {
-          res.data.data.pid = '18495'
-          _this.setData({ cjData: res.data.data });
-        }
-      }
-    })
+  async getPageId(){
+    const params = { pid: '18495' }
+    let res = await Api.Choujin.getPageId(params);
+    if (res) {
+      res.pid = '18495'
+      this.setData({ cjData: res });
+    }
+  },
+  onRefreshPageId: function(){
+    this.getPageId()
+  },
+  onLoad() {
+    this.getPageId()
     // const options = ks.getLaunchOptionsSync();
     // if (options.query) {
     //     const h5page = options.query.h5page || ''
