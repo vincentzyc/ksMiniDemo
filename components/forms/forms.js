@@ -10,6 +10,7 @@ Component({
     }
   },
   data: {
+    hadCityInfo: false,
     cityInfo: [],
     ipRegion: [],
     region: [],
@@ -21,6 +22,7 @@ Component({
   },
   observers: {
     'cjData.productCode': function (productCode) {
+      if (this.data.hadCityInfo) return
       if (productCode) this.getCityInfo(productCode)
     },
     multiText(value) {
@@ -42,6 +44,7 @@ Component({
     async getCityInfo(productCode) {
       const res = await Api.Choujin.getCityInfo({ productCode: productCode })
       if (res && res.length > 0) {
+        this.data.hadCityInfo = true
         this.setData({ cityInfo: res })
         this.setMultiArr(this.data.ipRegion)
       }
@@ -130,14 +133,25 @@ Component({
       params.pid = this.data.cjData.pid
       return params
     },
-    submit(e) {
-      console.log(e);
-      console.log('酬金基础数据',this.data.cjData)
+    async submit(e) {
       const params = this.formatParam(e.detail.value)
       console.log('提交数据', params)
       const valiDateRes = this.valiDate(params);
       if (valiDateRes !== true) return ks.showToast({ title: valiDateRes, icon: 'none' })
-      ks.showToast({ title: '数据格式校验通过', icon: 'none' })
+      ks.showLoading({ title: '正在提交' })
+      let res = await Api.Choujin.submitForm(params);
+      ks.hideLoading()
+      if (res.responseCode === '0') {
+        ks.navigateTo({
+          url: '/pages/success/success'
+        })
+      } else {
+        ks.showModal({
+          showCancel: false,
+          content: res.msg
+        })
+        this.triggerEvent('refreshPageId', {}, {})
+      }
     },
     openAgr1() {
       const elYunPopup = this.selectComponent('#yun-popup1')
