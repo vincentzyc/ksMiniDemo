@@ -15,7 +15,7 @@
             <view class="fixex-service" bindtap="openService">联系客服</view>
         </view>
         <image class="image" src="../../assets/images/1.jpg" />
-        <YuiForms class="row" cjData="{{cjData}}" id="YuiForms"/>
+        <YuiForms class="row" cjData="{{cjData}}" id="YuiForms" bindrefreshPageId="onRefreshPageId"/>
         <image class="image" lazy-load src="../../assets/images/2.jpg" />
         <image class="image" lazy-load src="../../assets/images/3.jpg" />
         <view class="company-info">
