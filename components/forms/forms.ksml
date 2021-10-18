@@ -1,5 +1,5 @@
 <view class="forms-wrap">
-	<form class="wrapper" bindsubmit="submit">
+	<form class="wrapper" bindsubmit="submit" id="YuiForms">
 		<view class="input-wrap">
 			<view class="input-label">客户姓名</view>
 			<input name="custName" class="input flex flex-auto" placeholder="请填写办理人真实姓名（已加密）" />
@@ -47,6 +47,7 @@
 				</span>
 			</view>
 		</view>
+    <button class="fixed-bottom submit-btn" type="primary" form-type="submit">免费领取</button>
 	</form>
 	<YunPopup id="yun-popup1">
 		<view class="agr-text-wrap">
