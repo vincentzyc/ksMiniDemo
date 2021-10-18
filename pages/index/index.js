@@ -18,10 +18,6 @@ Page({
       showCancel: false
     })
   },
-  bottomSubmit(){
-    const elYuiForms = this.selectComponent('#YuiForms')
-    console.log(elYuiForms);
-  },
   onLoad: function () {
     const _this = this
     ks.request({
