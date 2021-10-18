@@ -1,3 +1,4 @@
+import AllCity from '../../assets/json/city.json';
 import ruleList from '../../assets/js/validate.js';
 import Api from '../../api/index'
 
@@ -148,6 +149,7 @@ Component({
     }
   },
   async ready() {
+    this.setData({ cityInfo: AllCity })
     const res = await Api.Choujin.getIpRegion({})
     if (res.data) {
       const ctInfo = res.data || {}
