@@ -77,7 +77,6 @@ Component({
           const element3 = cityObj.cityInfo[index3];
           areas.push(element3.cityName)
           if (element3.cityName === area) {
-            console.log('indexindexindex', index3);
             areaIndex = index3
           }
         }
@@ -135,20 +134,20 @@ Component({
     },
     async submit(e) {
       const params = this.formatParam(e.detail.value)
-      console.log('提交数据', params)
       const valiDateRes = this.valiDate(params);
-      if (valiDateRes !== true) return ks.showToast({ title: valiDateRes, icon: 'none' })
+      if (valiDateRes !== true) {
+        ks.pageScrollTo({ selector: '#YuiForms' })
+        return ks.showToast({ title: valiDateRes, icon: 'none' })
+      }
       ks.showLoading({ title: '正在提交' })
       let res = await Api.Choujin.submitForm(params);
       ks.hideLoading()
       if (res.responseCode === '0') {
-        ks.navigateTo({
-          url: '/pages/success/success'
-        })
+        ks.navigateTo({ url: '/pages/success/success' })
       } else {
         ks.showModal({
           showCancel: false,
-          content: res.msg
+          content: res.msg || '提交失败，请稍后重试'
         })
         this.triggerEvent('refreshPageId', {}, {})
       }
