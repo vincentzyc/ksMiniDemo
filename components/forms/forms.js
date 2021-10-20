@@ -1,6 +1,7 @@
 import AllCity from '../../assets/json/city.json';
 import ruleList from '../../assets/js/validate.js';
 import Api from '../../api/index'
+import StaticData from '../../assets/js/static-data.js'
 
 Component({
   properties: {
@@ -18,18 +19,33 @@ Component({
     multiIndex: [0, 0, 0],
     multiArr: [],
     multiText: [],
-    multiStr: ''
+    multiStr: '',
+    searchNum: '',
+    phoneList:[],
+    agrtext1: StaticData.agrtext1,
+    agrtext2: StaticData.agrtext2,
   },
   observers: {
     'cjData.productCode': function (productCode) {
       if (this.data.hadCityInfo) return
-      if (productCode) this.getCityInfo(productCode)
+      if (productCode) {
+        this.getHandleNoItem()
+        this.getCityInfo(productCode)
+      }
     },
     multiText(value) {
       if (Array.isArray(value)) this.setData({ multiStr: value.join(' ') })
     }
   },
   methods: {
+    bindNumInput(e) {
+      const iptVal = e.detail.value;
+      this.setData({ searchNum: iptVal })
+    },
+    openNumPicker() {
+      const elNumPopup = this.selectComponent('#num-popup')
+      elNumPopup.data.show ? elNumPopup.closePopup() : elNumPopup.openPopup()
+    },
     getMultiText(multiIndex) {
       if (Array.isArray(this.data.multiArr) && this.data.multiArr.length === 0) return []
       const province = this.data.multiArr[0][multiIndex[0]]
@@ -136,7 +152,9 @@ Component({
       const params = this.formatParam(e.detail.value)
       const valiDateRes = this.valiDate(params);
       if (valiDateRes !== true) {
-        ks.pageScrollTo({ selector: '#YuiForms' })
+        // 兼容性问题，安卓直接滚动到了底部
+        // ks.pageScrollTo({ selector: '#YuiForms' })
+        // ks.pageScrollTo({ scrollTop: 100 })
         return ks.showToast({ title: valiDateRes, icon: 'none' })
       }
       ks.showLoading({ title: '正在提交' })
@@ -159,7 +177,22 @@ Component({
     openAgr2() {
       const elYunPopup = this.selectComponent('#yun-popup2')
       elYunPopup.data.show ? elYunPopup.closePopup() : elYunPopup.openPopup()
-    }
+    },
+    async getHandleNoItem(keyWord = '') {
+      const param = {
+        pid: this.data.cjData.pid,
+        searchNum: keyWord,
+        productCode: this.data.cjData.productCode,
+        sysOrderId: this.data.cjData.pageId,
+      }
+      let res = await Api.Choujin.getHandleNoItem(param);
+      console.log(res);
+      if (res.code === '0000' && Array.isArray(res.data?.numItem)) {
+        // this.data.phoneList = res.data.numItem
+        return res.data.numItem
+      }
+      return []
+    },
   },
   async ready() {
     this.setData({ cityInfo: AllCity })
