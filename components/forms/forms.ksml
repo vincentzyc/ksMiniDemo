@@ -2,7 +2,17 @@
 	<form class="wrapper" bindsubmit="submit" id="YuiForms">
 		<view class="input-wrap">
 			<view class="input-label">免费选号</view>
-			<input name="handleNo" class="input flex flex-auto" placeholder="请选择号码" disabled bindtap="openNumPicker" />
+			<input name="handleNo" value="{{selectPhone}}" class="input flex flex-auto" placeholder="请选择您的心仪号码" disabled bindtap="openNumPicker" />
+
+      <!-- <div :id="item.key" class="wg-input normal-color" v-if="phone.item.length > 0">
+        <span
+          :key="key"
+          :style="{ color: num.highlight ? item.numStyle && item.numStyle.highlight || '#f15048' : '' }"
+          v-for="(num,key) in phone.item"
+        >{{ num.numChar }}</span>
+      </div>
+      <div :id="item.key" class="wg-input normal-color" v-else>{{ item.placeholder }}</div> -->
+
 			<view class="input-label-icon"></view>
 		</view>
 		<view class="input-wrap">
@@ -73,17 +83,17 @@
 				<view class="row numpicker-top flex">
 					<icon type='search' size='16' class="numpicker-search-icon" />
 					<input type="number" class="numpicker-input flex-auto" placeholder="请输入幸运数字" maxlength="8" bindinput='bindNumInput' />
-					<button class="numpicker-change flex-none" type="primary" size="mini">换一批</button>
+					<button class="numpicker-change flex-none" type="primary" size="mini" loading="{{loading}}">{{loading?"获取中":"换一批"}}</button>
 				</view>
 				<view class="numpicker-center">
 					<ul class="flex flex-wrap space-around">
-						<li class="phone-item" bindinput='bindNumInput'>
-							<div class="flex flex-center flex-column phone-number isactive">
-								<p><span>1</span><span>5</span><span>3</span><span class="active-char">6</span><span>4</span><span>3</span><span>4</span><span class="active-char">6</span><span>3</span><span>1</span><span>5</span></p>
+						<li class="phone-item" bindtap='handleSelect' data-phone-item="{{phone}}" ks:for="{{phoneList}}" ks:for-item="phone">
+							<div class="{{['flex', 'flex-center', 'flex-column', 'phone-number',selectPhone===phone.num?'isactive':'']}}">
+								<p><span ks:for="{{phone.item}}" class="{{item.highlight?'active-char':''}}">{{item.numChar}}</span></p>
 						</li>
-            <li class="phone-item mg-b0"></li>
-            <li class="phone-item mg-b0"></li>
-            <li class="phone-item mg-b0"></li>
+						<li class="phone-item mg-b0"></li>
+						<li class="phone-item mg-b0"></li>
+						<li class="phone-item mg-b0"></li>
 					</ul>
 				</view>
 				<button class="numpicker-confirm-btn" type="primary">确定</button>

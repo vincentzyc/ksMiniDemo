@@ -21,7 +21,10 @@ Component({
     multiText: [],
     multiStr: '',
     searchNum: '',
-    phoneList:[],
+    phoneList: [],
+    selectNumItem: '',
+    selectPhone: '',
+    loading: false,
     agrtext1: StaticData.agrtext1,
     agrtext2: StaticData.agrtext2,
   },
@@ -29,7 +32,7 @@ Component({
     'cjData.productCode': function (productCode) {
       if (this.data.hadCityInfo) return
       if (productCode) {
-        this.getHandleNoItem()
+        this.initNumber()
         this.getCityInfo(productCode)
       }
     },
@@ -41,6 +44,9 @@ Component({
     bindNumInput(e) {
       const iptVal = e.detail.value;
       this.setData({ searchNum: iptVal })
+    },
+    handleSelect(e) {
+      this.setData({ selectPhone: e.currentTarget.dataset.phoneItem.num })
     },
     openNumPicker() {
       const elNumPopup = this.selectComponent('#num-popup')
@@ -178,6 +184,14 @@ Component({
       const elYunPopup = this.selectComponent('#yun-popup2')
       elYunPopup.data.show ? elYunPopup.closePopup() : elYunPopup.openPopup()
     },
+    initNumber() {
+      this.setData({ loading: true, phoneList: [] })
+      this.getHandleNoItem().then(res => {
+        this.setData({ phoneList: res, selectNumItem: res[0], selectPhone: res[0].num })
+      }).finally(() => {
+        this.setData({ loading: false })
+      })
+    },
     async getHandleNoItem(keyWord = '') {
       const param = {
         pid: this.data.cjData.pid,
@@ -186,10 +200,8 @@ Component({
         sysOrderId: this.data.cjData.pageId,
       }
       let res = await Api.Choujin.getHandleNoItem(param);
-      console.log(res);
       if (res.code === '0000' && Array.isArray(res.data?.numItem)) {
-        // this.data.phoneList = res.data.numItem
-        return res.data.numItem
+        return res.data.numItem.slice(0, 8)
       }
       return []
     },
