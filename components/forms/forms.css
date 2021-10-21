@@ -48,6 +48,9 @@
 .input-placeholder {
 	color: #aaa;
 }
+.input-phone {
+	font-size: 16px;
+}
 
 .form-submit {
 	margin-top: 20rpx;
@@ -131,7 +134,7 @@
 .numpicker-center .isactive {
 	border-color: #f15048
 }
-.numpicker-center .active-char {
+.input-wrap .active-char, .numpicker-center .active-char {
 	color: #f15048
 }
 .phone-item.mg-b0 {
