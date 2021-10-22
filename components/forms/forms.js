@@ -247,7 +247,7 @@ Component({
       }
       const res = await Api.Choujin.lockNumber(params)
       ks.hideLoading()
-      if (res?.code === '1') {
+      if (res?.code === '0') {
         this.handleSelect(phoneItem)
       } else {
         ks.showToast({
