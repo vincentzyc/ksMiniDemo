@@ -45,10 +45,13 @@ Component({
       const iptVal = e.detail.value;
       this.setData({ searchNum: iptVal })
     },
-    handleSelect(e) {
-      this.setData({ selectPhone: e.currentTarget.dataset.phoneItem.num })
+    handleSelect(phoneItem) {
+      this.setData({
+        selectPhone: phoneItem?.num || '',
+        selectNumItem: phoneItem || ''
+      })
     },
-    openNumPicker() {
+    toggleNumPicker() {
       const elNumPopup = this.selectComponent('#num-popup')
       elNumPopup.data.show ? elNumPopup.closePopup() : elNumPopup.openPopup()
     },
@@ -152,6 +155,7 @@ Component({
       }
       params.pageId = this.data.cjData.pageId
       params.pid = this.data.cjData.pid
+      params.selectPhone = this.data.selectPhone
       return params
     },
     async submit(e) {
@@ -176,11 +180,11 @@ Component({
         this.triggerEvent('refreshPageId', {}, {})
       }
     },
-    openAgr1() {
+    toggleAgr1() {
       const elYunPopup = this.selectComponent('#yun-popup1')
       elYunPopup.data.show ? elYunPopup.closePopup() : elYunPopup.openPopup()
     },
-    openAgr2() {
+    toggleAgr2() {
       const elYunPopup = this.selectComponent('#yun-popup2')
       elYunPopup.data.show ? elYunPopup.closePopup() : elYunPopup.openPopup()
     },
@@ -192,10 +196,10 @@ Component({
         this.setData({ loading: false })
       })
     },
-    async getHandleNoItem(keyWord = '') {
+    async getHandleNoItem() {
       const param = {
         pid: this.data.cjData.pid,
-        searchNum: keyWord,
+        searchNum: this.data.searchNum,
         productCode: this.data.cjData.productCode,
         sysOrderId: this.data.cjData.pageId,
       }
@@ -204,6 +208,55 @@ Component({
         return res.data.numItem.slice(0, 8)
       }
       return []
+    },
+    // searchNumber(e) {
+    //   e.target.value = e.target.value.replace(/\D/g, '');
+    //   if (e.target.value.length > 8) {
+    //     e.target.value = e.target.value.slice(0, 8);
+    //     return
+    //   }
+    //   if (this.keyWord === e.target.value) return
+    //   this.keyWord = e.target.value
+    //   if (!this.isChoujin) return
+    //   window.clearTimeout(this.timer)
+    //   this.timer = setTimeout(() => {
+    //     this.getHandleNoItem(this.keyWord).then(res => {
+    //       if (res.length > 0) this.selectNum(res[0])
+    //       this.phoneList = res;
+    //     }).catch(() => { })
+    //   }, 500);
+    // },
+    changeNumber() {
+      if (this.data.loading) return;
+      this.setData({ loading: true, phoneList: [] })
+      this.getHandleNoItem().then(res => {
+        this.setData({ phoneList: res, selectNumItem: res[0], selectPhone: res[0].num })
+      }).finally(() => {
+        this.setData({ loading: false })
+      })
+    },
+    async lockNumber(e) {
+      const phoneIndex = e.currentTarget?.dataset?.phoneIndex
+      const phoneItem = e.currentTarget?.dataset?.phoneItem
+      ks.showLoading({ title: '拼命抢号中...' })
+      const params = {
+        handleNo: phoneItem.num,
+        pid: this.data.cjData.pid,
+        productCode: this.data.cjData.productCode,
+        sysOrderId: this.data.cjData.pageId,
+      }
+      const res = await Api.Choujin.lockNumber(params)
+      ks.hideLoading()
+      if (res?.code === '1') {
+        this.handleSelect(phoneItem)
+      } else {
+        ks.showToast({
+          title: '您下手太慢了，该号码已被别的用户选取！',
+          icon: 'none',
+        })
+        this.data.phoneList.splice(phoneIndex, 1)
+        this.setData({ phoneList: this.data.phoneList })
+      }
     },
   },
   async ready() {
