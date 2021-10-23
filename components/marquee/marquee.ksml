@@ -1,0 +1,10 @@
+<view class="marquee-wrap flex flex-center">
+	<ul class="scroll-wrapper">
+		<view style="{{marginTop}}" class="{{animate?'animate':''}}">
+			<li :key="i" class="flex align-middle scroll-item" ks:for="{{textList}}">
+        <image class='flex userimg flex-none' src="{{item.src}}" mode="scaleToFill" />
+				<span class="flex-auto scroll-text">{{ item.text }}</span>
+			</li>
+		</view>
+	</ul>
+</view>
