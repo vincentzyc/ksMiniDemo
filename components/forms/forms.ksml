@@ -38,10 +38,9 @@
 			<view class="input-label">详细地址</view>
 			<input name="address" class="input flex flex-auto" placeholder="请填写收货地址（已加密）" />
 		</view>
+		<YunMarquee />
 		<view class="wrap">
-			<button class="form-submit" form-type="submit" type="primary">
-				0元领取
-			</button>
+			<button class="form-submit" form-type="submit" type="primary">0元领取</button>
 		</view>
 		<view class="agr-wrap flex flex-center">
 			<checkbox-group name='checkbox'>
@@ -86,15 +85,16 @@
 							<div class="{{['flex', 'flex-center', 'flex-column', 'phone-number',selectPhone===phone.num?'isactive':'']}}">
 								<p><span ks:for="{{phone.item}}" class="{{item.highlight?'active-char':''}}">{{item.numChar}}</span></p>
 							</div>
+							<span class="is-good-num"></span>
 						</li>
 						<li class="phone-item mg-b0"></li>
 						<li class="phone-item mg-b0"></li>
 						<li class="phone-item mg-b0"></li>
 					</ul>
-          <view ks:else class="flex flex-center flex-column">
-            <p>哎呦，没有适合您的号码！</p>
-            <small style="color:#ccc;margin: 5px 0 10px 0;">建议缩短号码字数，例如：88</small>
-          </view>
+					<view ks:else class="flex flex-center flex-column">
+						<p>哎呦，没有适合您的号码！</p>
+						<small style="color:#ccc;margin: 5px 0 10px 0;">建议缩短号码字数，例如：88</small>
+					</view>
 				</view>
 				<button class="numpicker-confirm-btn" type="primary" bindtap="toggleNumPicker">确定</button>
 			</view>

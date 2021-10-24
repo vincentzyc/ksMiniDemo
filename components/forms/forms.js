@@ -27,12 +27,13 @@ Component({
     loading: false,
     agrtext1: StaticData.agrtext1,
     agrtext2: StaticData.agrtext2,
+    timer: 0,
   },
   observers: {
     'cjData.productCode': function (productCode) {
       if (this.data.hadCityInfo) return
       if (productCode) {
-        this.initNumber()
+        this.getNumber()
         this.getCityInfo(productCode)
       }
     },
@@ -44,6 +45,10 @@ Component({
     bindNumInput(e) {
       const iptVal = e.detail.value;
       this.setData({ searchNum: iptVal })
+      clearTimeout(this.data.timer)
+      this.data.timer = setTimeout(() => {
+        this.getNumber()
+      }, 300);
     },
     handleSelect(phoneItem) {
       this.setData({
@@ -155,16 +160,14 @@ Component({
       }
       params.pageId = this.data.cjData.pageId
       params.pid = this.data.cjData.pid
-      params.selectPhone = this.data.selectPhone
+      params.handleNo = this.data.selectPhone
       return params
     },
     async submit(e) {
       const params = this.formatParam(e.detail.value)
       const valiDateRes = this.valiDate(params);
       if (valiDateRes !== true) {
-        // 兼容性问题，安卓直接滚动到了底部
-        // ks.pageScrollTo({ selector: '#YuiForms' })
-        // ks.pageScrollTo({ scrollTop: 100 })
+        ks.pageScrollTo({ selector: '#YuiForms' })
         return ks.showToast({ title: valiDateRes, icon: 'none' })
       }
       ks.showLoading({ title: '正在提交' })
@@ -188,8 +191,8 @@ Component({
       const elYunPopup = this.selectComponent('#yun-popup2')
       elYunPopup.data.show ? elYunPopup.closePopup() : elYunPopup.openPopup()
     },
-    initNumber() {
-      this.setData({ loading: true, phoneList: [] })
+    getNumber() {
+      this.setData({ loading: true })
       this.getHandleNoItem().then(res => {
         this.setData({ phoneList: res, selectNumItem: res[0], selectPhone: res[0].num })
       }).finally(() => {
@@ -209,28 +212,11 @@ Component({
       }
       return []
     },
-    // searchNumber(e) {
-    //   e.target.value = e.target.value.replace(/\D/g, '');
-    //   if (e.target.value.length > 8) {
-    //     e.target.value = e.target.value.slice(0, 8);
-    //     return
-    //   }
-    //   if (this.keyWord === e.target.value) return
-    //   this.keyWord = e.target.value
-    //   if (!this.isChoujin) return
-    //   window.clearTimeout(this.timer)
-    //   this.timer = setTimeout(() => {
-    //     this.getHandleNoItem(this.keyWord).then(res => {
-    //       if (res.length > 0) this.selectNum(res[0])
-    //       this.phoneList = res;
-    //     }).catch(() => { })
-    //   }, 500);
-    // },
     changeNumber() {
       if (this.data.loading) return;
-      this.setData({ loading: true, phoneList: [] })
+      this.setData({ loading: true })
       this.getHandleNoItem().then(res => {
-        this.setData({ phoneList: res, selectNumItem: res[0], selectPhone: res[0].num })
+        this.setData({ phoneList: res || [], selectNumItem: res[0], selectPhone: res[0].num })
       }).finally(() => {
         this.setData({ loading: false })
       })
