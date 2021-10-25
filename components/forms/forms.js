@@ -42,6 +42,9 @@ Component({
     }
   },
   methods: {
+    reset() {
+      this.triggerEvent('refreshPageId', {}, {})
+    },
     bindNumInput(e) {
       const iptVal = e.detail.value;
       this.setData({ searchNum: iptVal })
