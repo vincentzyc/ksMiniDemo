@@ -3,7 +3,7 @@ Component({
     animate: false,
     marginTop: 'margin-top:0px',
     scrollIndex: 0,
-    scrollLenght: 6,
+    scrollLenght: 0,
     scrollTimeId: 0,
     animateTimeId: 0,
     textList: [{
@@ -27,15 +27,14 @@ Component({
     }, {
       src: '../../assets/images/header1.jpg',
       text: '李**15秒前已免费领取'
-    }]
+    },]
   },
   methods: {
     scroll() {
       if (this.data.scrollIndex === 0) this.setData({ animate: true })
-      console.log(this.data.scrollIndex);
       this.setData({
         scrollIndex: this.data.scrollIndex + 1,
-        marginTop: `margin-top:${-44 * this.data.scrollIndex}px`
+        marginTop: `margin-top:${-44 * (this.data.scrollIndex + 1)}px`
       })
       if (this.data.scrollIndex === this.data.scrollLenght) {
         this.data.animateTimeId = setTimeout(() => {
@@ -44,11 +43,12 @@ Component({
             marginTop: 'margin-top:0px',
             scrollIndex: 0
           })
-        }, 550);
+        }, 600);
       }
     }
   },
   ready() {
-    // this.data.scrollTimeId = setInterval(this.scroll, 3000);
+    this.data.scrollLenght = this.data.textList.length - 1
+    this.data.scrollTimeId = setInterval(this.scroll, 3000);
   }
 })
