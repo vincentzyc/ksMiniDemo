@@ -1,8 +1,8 @@
 <view class="forms-wrap">
 	<form class="wrapper" bindsubmit="submit" id="YuiForms">
-		<view class="input-wrap">
+		<view class="input-wrap" bindtap="toggleNumPicker">
 			<view class="input-label">免费选号</view>
-			<view bindtap="toggleNumPicker" class="flex align-middle input flex-auto">
+			<view class="flex align-middle input flex-auto">
 				<view class="flex input-phone" ks:if="{{selectPhone}}">
 					<p><span ks:for="{{selectNumItem.item}}" class="{{item.highlight?'active-char':''}}">{{item.numChar}}</span></p>
 				</view>
@@ -32,7 +32,7 @@
 					</view>
 				</picker>
 			</view>
-			<view class="input-label-icon"></view>
+			<!-- <view class="input-label-icon"></view> -->
 		</view>
 		<view class="input-wrap">
 			<view class="input-label">详细地址</view>
@@ -57,7 +57,7 @@
 				</span>
 			</view>
 		</view>
-		<button class="fixed-bottom submit-btn" type="primary" form-type="submit">免费领取</button>
+		<button ks:if="{{showBottomBtn}}" class="fixed-bottom submit-btn" type="primary" form-type="submit">免费领取</button>
 	</form>
 	<YunPopup id="yun-popup1">
 		<view class="popup-commom-wrap c666">
@@ -85,7 +85,7 @@
 							<div class="{{['flex', 'flex-center', 'flex-column', 'phone-number',selectPhone===phone.num?'isactive':'']}}">
 								<p><span ks:for="{{phone.item}}" class="{{item.highlight?'active-char':''}}">{{item.numChar}}</span></p>
 							</div>
-							<span class="is-good-num"></span>
+							<span ks:if="{{phone.item.some(v => v.highlight)}}" class="is-good-num"></span>
 						</li>
 						<li class="phone-item mg-b0"></li>
 						<li class="phone-item mg-b0"></li>

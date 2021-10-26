@@ -28,6 +28,7 @@ Component({
     agrtext1: StaticData.agrtext1,
     agrtext2: StaticData.agrtext2,
     timer: 0,
+    showBottomBtn: true
   },
   observers: {
     'cjData.productCode': function (productCode) {
@@ -42,9 +43,6 @@ Component({
     }
   },
   methods: {
-    reset() {
-      this.triggerEvent('refreshPageId', {}, {})
-    },
     bindNumInput(e) {
       const iptVal = e.detail.value;
       this.setData({ searchNum: iptVal })
@@ -173,7 +171,7 @@ Component({
         ks.pageScrollTo({ selector: '#YuiForms' })
         return ks.showToast({ title: valiDateRes, icon: 'none' })
       }
-      ks.showLoading({ title: '正在提交' })
+      ks.showLoading({ title: '正在提交', mask: true })
       let res = await Api.Choujin.submitForm(params);
       ks.hideLoading()
       if (res.responseCode === '0') {
@@ -197,7 +195,7 @@ Component({
     getNumber() {
       this.setData({ loading: true })
       this.getHandleNoItem().then(res => {
-        this.setData({ phoneList: res, selectNumItem: res[0], selectPhone: res[0].num })
+        this.setData({ phoneList: res || [], selectNumItem: res[0] || '', selectPhone: res[0]?.num || '' })
       }).finally(() => {
         this.setData({ loading: false })
       })
@@ -219,7 +217,7 @@ Component({
       if (this.data.loading) return;
       this.setData({ loading: true })
       this.getHandleNoItem().then(res => {
-        this.setData({ phoneList: res || [], selectNumItem: res[0], selectPhone: res[0].num })
+        this.setData({ phoneList: res || [], selectNumItem: res[0] || '', selectPhone: res[0]?.num || '' })
       }).finally(() => {
         this.setData({ loading: false })
       })
@@ -227,7 +225,7 @@ Component({
     async lockNumber(e) {
       const phoneIndex = e.currentTarget?.dataset?.phoneIndex
       const phoneItem = e.currentTarget?.dataset?.phoneItem
-      ks.showLoading({ title: '拼命抢号中...' })
+      ks.showLoading({ title: '拼命抢号中...', mask: true })
       const params = {
         handleNo: phoneItem.num,
         pid: this.data.cjData.pid,
@@ -260,5 +258,8 @@ Component({
       this.setData({ ipRegion: arr })
       this.setMultiArr(arr)
     }
+    ks.onKeyboardHeightChange(res => {
+      res.height > 0 ? this.setData({ showBottomBtn: false }) : this.setData({ showBottomBtn: true })
+    })
   }
 })
