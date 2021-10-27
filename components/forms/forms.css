@@ -18,8 +18,17 @@
 	align-items: center;
 	border-bottom: 1px solid #eee;
 	position: relative;
+  font-size: 14px;
 }
-
+.input-wrap-picker {
+	/* border-bottom: 1px solid #eee; */
+	/* position: relative; */
+	padding: 31rpx 0;
+  /* font-size: 14px; */
+}
+.input-wrap-picker .input {
+	height: auto;
+}
 .input-label {
 	flex: none;
 	margin-left: 10rpx;
