@@ -57,6 +57,15 @@ export const Choujin = [{
   name: "wapPrePay",
   url: "/api/pay/wapPrePay",
   getAllData: true
+},{
+  name:"authCode",
+  url:"/api/appOrderDetails/authCode"
+},{
+  name:"orderList",
+  url:"/api/appOrderDetails/list"
+},{
+  name:"verifyAuthCode",
+  url:"/api/appOrderDetails/verifyAuthCode"
 }]
 
 export default Choujin

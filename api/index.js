@@ -41,9 +41,9 @@ export const Api = {
           if (config.getAllData) return resolve(result);
           switch (result.code) {
             case "0": //  成功
-              return resolve(result.data || "success");
+              return resolve(result.data);
             case "0000": //  成功
-              return resolve(result.data || "success");
+              return resolve(result.data);
             default: // 失败
               if (config.getError) return reject('fail')
               ks.hideLoading();
