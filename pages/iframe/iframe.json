@@ -1,9 +1,6 @@
 {
-    "usingComponents": {},
-    "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "中国电信尊享版星卡",
-        "navigationBarTextStyle": "black"
-    }
+  "usingComponents": {},
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black"
 }
