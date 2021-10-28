@@ -9,6 +9,11 @@ const ruleList = {
     if (value.length < 2 || value.length > 20) return '姓名长度不能小于2或超过20';
     return '姓名必须为汉字'
   },
+  telephone: value => {
+    if (!value) return '请输入手机号';
+    if (/^(?:(?:\+|00)86)?1[3-9]\d{9}$/.test(value)) return true;
+    return '请输入正确的手机号码'
+  },
   contactNumber: value => {
     if (!value) return '请输入手机号';
     if (/^(?:(?:\+|00)86)?1[3-9]\d{9}$/.test(value)) return true;
@@ -17,6 +22,11 @@ const ruleList = {
   verifyCode: value => {
     if (!value) return '请输入验证码';
     if (value.length === 4) return true;
+    return "验证码错误";
+  },
+  authCode: value => {
+    if (!value) return '请输入验证码';
+    if (value.length === 4 || value.length === 6) return true;
     return "验证码错误";
   },
   idCardNo: value => {
