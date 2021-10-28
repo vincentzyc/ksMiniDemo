@@ -5,10 +5,11 @@ Page({
     cjData: null
   },
   goOrder() {
-    const url = 'https://card.liulianglf.cn/sim/index.html#/login'
-    ks.navigateTo({
-      url: '/pages/iframe/iframe?url=' + encodeURIComponent(url),
-    })
+    // const url = 'https://card.liulianglf.cn/sim/index.html#/login'
+    // ks.navigateTo({
+    //   url: '/pages/iframe/iframe?url=' + encodeURIComponent(url),
+    // })
+    ks.navigateTo({ url: '/pages/login/login' })
   },
   openService() {
     ks.showModal({
