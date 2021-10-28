@@ -2,7 +2,9 @@
     "pages": [
         "pages/index/index",
         "pages/iframe/iframe",
-        "/pages/success/success"
+        "/pages/success/success",
+        "/pages/order/order",
+        "/pages/login/login"
     ],
     "window": {
         "backgroundTextStyle": "light",
