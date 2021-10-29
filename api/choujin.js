@@ -1,4 +1,4 @@
-export const cjBaseUrl = "https://card-api.liulianglf.cn"
+export const cjBaseUrl = "https://test.com"
 
 export const Choujin = [{
   name: "submitForm",
