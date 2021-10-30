@@ -41,12 +41,14 @@ Page({
     if (valiDateRes !== true) {
       return ks.showToast({ title: valiDateRes, icon: 'none' })
     }
-    const res = await Api.Choujin.authCode(params)
-    if (res.responseCode === '0000') {
-      this.smsCount(60);
-    } else {
-      ks.showToast({ title: res.message, icon: 'none' })
-    }
+    Api.Choujin.authCode(params)
+    this.smsCount(60)
+  //  const res = await Api.Choujin.authCode(params)
+  //  if (res.responseCode === '0000') {
+   //   this.smsCount(60);
+  //  } else {
+   //   ks.showToast({ title: res.message, icon: 'none' })
+ //   }
   },
   valiDate(obj) {
     for (const key in obj) {
