@@ -9,7 +9,7 @@ Page({
     smsText: '获取验证码',
   },
   smsCount(t) {
-    var r = () => {
+    const run = () => {
       if (t > 1) {
         t -= 1;
         this.setData({
@@ -25,9 +25,9 @@ Page({
       }
     };
     this.data.timer = setInterval(function () {
-      r()
+      run()
     }, 1000)
-    r()
+    run()
   },
   bindNumInput(e) {
     const iptVal = e.detail.value;
