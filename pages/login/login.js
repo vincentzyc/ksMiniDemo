@@ -68,7 +68,9 @@ Page({
     if (valiDateRes !== true) {
       return ks.showToast({ title: valiDateRes, icon: 'none' })
     }
+    ks.showLoading({ title: '正在登录', mask: true })
     const res = await Api.Choujin.verifyAuthCode(params)
+    ks.hideLoading()
     if (res.responseCode === '0000') {
       ks.navigateTo({ url: '/pages/order/order?phone=' + params.telephone })
     } else {
