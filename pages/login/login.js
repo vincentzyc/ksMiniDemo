@@ -43,12 +43,12 @@ Page({
     }
     Api.Choujin.authCode(params)
     this.smsCount(60)
-  //  const res = await Api.Choujin.authCode(params)
-  //  if (res.responseCode === '0000') {
-   //   this.smsCount(60);
-  //  } else {
-   //   ks.showToast({ title: res.message, icon: 'none' })
- //   }
+    // const res = await Api.Choujin.authCode(params)Z
+    // if (res.responseCode === '0000') {
+    //   this.smsCount(60);
+    // } else {
+    //   ks.showToast({ title: res.message, icon: 'none' })
+    // }
   },
   valiDate(obj) {
     for (const key in obj) {
