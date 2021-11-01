@@ -50,5 +50,9 @@ Component({
   ready() {
     this.data.scrollLenght = this.data.textList.length - 1
     this.data.scrollTimeId = setInterval(this.scroll, 3000);
+  },
+  detached(){
+    clearInterval(this.data.scrollTimeId)
+    this.data.scrollTimeId = null
   }
 })
