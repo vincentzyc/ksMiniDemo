@@ -43,6 +43,7 @@ Page({
     }
     Api.Choujin.authCode(params)
     this.smsCount(60)
+    // 用户体验优化，直接倒计时，不等结果
     // const res = await Api.Choujin.authCode(params)Z
     // if (res.responseCode === '0000') {
     //   this.smsCount(60);
